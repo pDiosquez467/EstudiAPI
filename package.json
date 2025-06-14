@@ -1,0 +1,28 @@
+{
+  "name": "estudiapi",
+  "version": "1.0.0",
+  "description": "API REST para gestionar estudiantes, profesores y cursos, desarrollada con Node.js, Express y MySQL. El proyecto evoluciona desde JavaScript a TypeScript usando TypeORM para el modelado de datos, y se ejecuta en un entorno Dockerizado.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pDiosquez467/EstudiAPI.git"
+  },
+  "keywords": [],
+  "author": "pdiosquez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pDiosquez467/EstudiAPI/issues"
+  },
+  "homepage": "https://github.com/pDiosquez467/EstudiAPI#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
