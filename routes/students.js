@@ -9,12 +9,15 @@ router.post('/', (req, res) => {
     res.json( {msg: "Create students"} )
 })
 
-router.put('/', (req, res) => {
-    res.json( {msg: "Update students"} )
-})
-
-router.delete('/', (req, res) => {
-    res.json( {msg: "Delete students"} )
-})
+router.route('/:id')
+    .get((req, res) => {
+        res.json( {msg: "Get student by ID"} )
+    })
+    .put((req, res) => {
+        res.json( {msg: "Update students"} )
+    })
+    .delete((req, res) => {
+        res.json( {msg: "Delete students"} )
+    })
 
 module.exports = router
