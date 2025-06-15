@@ -5,8 +5,10 @@ const port = 5050
 app.use(express.json())
 
 const studentsRoutes = require('./routes/students')
+const professorsRoutes = require('./routes/professors')
 
 app.use('/students', studentsRoutes)
+app.use('/professors', professorsRoutes)
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
