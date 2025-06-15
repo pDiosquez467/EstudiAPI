@@ -12,15 +12,18 @@ class StudentController {
     }
 
     get(req, res) {
-        res.json( {msg: "Get student by ID"} )
+        const { id } = req.params
+        res.json( {msg: `GET student by ID: ${id}`} )
     }
 
     update(req, res) {
-        res.json( {msg: "UPDATE student by ID"} )
+        const { id } = req.params
+        res.json( {msg: `UPDATE student by ID: ${id}`} )
     }
 
     delete(req, res) {
-        res.json( {msg: "DELETE student by ID"} )
+        const { id } = req.params
+        res.json( {msg: `DELETE student by ID: ${id}`} )
     }
 
 }
