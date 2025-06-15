@@ -2,19 +2,22 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-    res.json( {msg: "GET All professors"} )
+    res.json( {msg: "All professors"} )
 })
 
 router.post('/', (req, res) => {
-    res.json( {msg: "CREATE professor"} )
+    res.json( {msg: "Create professor"} )
 })
 
-router.delete('/', (req, res) => {
-    res.json( {msg: "DELETE professor"} )
-})
+router.route('/:id')
+    .get((req, res) => {
+        res.json( {msg: "Get professor by ID"} )
+    })
+    .put((req, res) => {
+        res.json( {msg: "Update professor by ID"} )
+    })
+    .delete((req, res) => {
+        res.json( {msg: "Delete professor by ID"} )
+    })
 
-router.put('/', (req, res) => {
-    res.json( {msg: "UPDATE professor"} )
-})
-
-module.exports = router 
+module.exports = router
