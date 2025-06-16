@@ -12,4 +12,6 @@ router.route('/:id')
     .put(controller.update)
     .delete(controller.delete)
 
+router.post('/register', controller.addStudent)
+
 module.exports = router
