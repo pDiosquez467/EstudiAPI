@@ -5,8 +5,13 @@ class StudentController {
 
     }
 
-    getAll(req, res) {
-        res.json( {msg: "GET all students"} )
+    async getAll(req, res) {
+        try {
+            const [result] = await db.query(`SELECT * FROM students;`);
+            res.status(200).json(result); 
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
     }
 
     async create(req, res) {
@@ -18,7 +23,7 @@ class StudentController {
                 VALUES (?, ?, ?, ?)`,
                 [license, first_name, last_name, email]
             );
-
+            
             res.status(201).json({ id: result.insertId });
         } catch (error) {
             res.status(400).json({ error: error.message });
