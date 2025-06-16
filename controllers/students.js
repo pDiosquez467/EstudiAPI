@@ -1,3 +1,5 @@
+const db = require('../database/connection')
+
 class StudentController {
     constructor() {
 
@@ -7,8 +9,20 @@ class StudentController {
         res.json( {msg: "GET all students"} )
     }
 
-    create(req, res) {
-        res.json( {msg: "CREATE student"} )
+    async create(req, res) {
+        const { license, first_name, last_name, email } = req.body;
+
+        try {
+            const [result] = await db.query(
+                `INSERT INTO students (license, first_name, last_name, email) 
+                VALUES (?, ?, ?, ?)`,
+                [license, first_name, last_name, email]
+            );
+
+            res.status(201).json({ id: result.insertId });
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
     }
 
     get(req, res) {
