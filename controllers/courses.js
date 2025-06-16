@@ -1,10 +1,17 @@
+const db = require('../database/connection')
+
 class CourseController {
     constructor() {
 
     }
 
-    getAll(req, res) {
-        res.json( {msg: "GET all courses"} )
+    async getAll(req, res) {
+        try {
+            const [result] = await db.query('SELECT * FROM courses;')
+            res.status(200).json(result)
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
     }
 
     create(req, res) {
@@ -28,4 +35,4 @@ class CourseController {
 
 }
 
-module.exports = new courseController()
+module.exports = new CourseController()
