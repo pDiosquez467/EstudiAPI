@@ -54,9 +54,21 @@ class StudentController {
         res.json( {msg: `UPDATE student by ID: ${id}`} )
     }
 
-    delete(req, res) {
+    async delete(req, res) {
         const { id } = req.params
-        res.json( {msg: `DELETE student by ID: ${id}`} )
+        
+        try {
+            const [result] = await db.query(`DELETE FROM students WHERE id=?`,
+            [id])
+
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ msg: `No student found with ID: ${id}` });
+            }
+
+            res.status(200).json({ msg: `Deleted student whit ID: ${id}` })
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
     }
 
 }
