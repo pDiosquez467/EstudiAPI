@@ -55,9 +55,53 @@ class ProfessorController {
         res.json({ msg: `GET professor by ID: ${id}` })
     }
 
-    update(req, res) {
-        const { id } = req.params
-        res.json({ msg: `UPDATE professor by ID: ${id}` })
+    async update(req, res) {
+        const { id } = req.params;
+        const { first_name, last_name, email, cellphone } = req.body;
+
+        const fields = []
+        const values = []
+
+        if (first_name !== undefined) {
+            fields.push('first_name = ?')
+            values.push(first_name)
+        }
+
+        if (last_name !== undefined) {
+            fields.push('last_name = ?')
+            values.push(last_name)
+        }
+
+        if (email !== undefined) {
+            fields.push('email = ?')
+            values.push(email)
+        }
+
+        if (cellphone !== undefined) {
+            fields.push('cellphone = ?')
+            values(cellphone)
+        }
+
+        if (fields.length === 0) {
+            return res.status(400).json({ msg: 'No fields to update' });
+        }
+
+        values.push(id)
+
+        try {
+            const [result] = await db.query(
+                `UPDATE professors SET ${fields.join(', ')} WHERE id = ?`,
+            values
+            );
+
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ msg: `No professor found with ID: ${id}` });
+            }
+
+            res.status(200).json({ msg: `Professor with ID ${id} updated successfully` });
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
     }
 
     async delete(req, res) {
