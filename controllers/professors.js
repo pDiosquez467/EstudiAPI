@@ -1,10 +1,17 @@
+const db = require('../database/connection')
+
 class ProfessorController {
     constructor() {
 
     }
 
-    getAll(req, res) {
-        res.json( {msg: "GET all professors"} )
+    async getAll(req, res) {
+        try {
+            const [result] = await db.query(`SELECT * FROM professors;`)
+            res.status(200).json(result)
+        } catch (error) {
+            res.status(400).json({ error: error.message })
+        }
     }
 
     create(req, res) {
