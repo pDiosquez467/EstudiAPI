@@ -30,10 +30,24 @@ class StudentController {
         }
     }
 
-    get(req, res) {
-        const { id } = req.params
-        res.json( {msg: `GET student by ID: ${id}`} )
+    async get(req, res) {
+    const { id } = req.params;
+    try {
+        const [result] = await db.query(
+            `SELECT * FROM students WHERE id = ?;`,
+            [id]  
+        );
+
+        if (result.length === 0) {
+            return res.status(404).json({ msg: `No student found with ID ${id}` });
+        }
+
+        res.status(200).json(result[0]);  
+    } catch (error) {
+        res.status(400).json({ error: error.message });
     }
+}
+
 
     update(req, res) {
         const { id } = req.params
