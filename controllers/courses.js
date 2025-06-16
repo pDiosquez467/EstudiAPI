@@ -14,8 +14,25 @@ class CourseController {
         }
     }
 
-    create(req, res) {
-        res.json( {msg: "CREATE course"} )
+    async create(req, res) {
+        const { name, description, professor_id } = req.body
+
+        const [professor] = await db.query('SELECT * FROM professors WHERE id = ?;', 
+            [professor_id])
+
+        if (professor.length === 0) {
+            return res.status(400).json({ error: `Professor with ID ${professor_id} does not exist` });
+        }
+
+        try {
+            const [result] = await db.query(
+                `INSERT INTO courses (name, description, professor_id)
+                 VALUES (?, ?, ?);`, [name, description, professor_id])
+
+            res.status(201).json({ id: result.insertId })
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
     }
 
     get(req, res) {
