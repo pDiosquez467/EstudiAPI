@@ -49,10 +49,7 @@ class ProfessorController {
         } catch (error) {
             res.status(400).json({ error: error.message })
         }
-
-
-
-        res.json({ msg: `GET professor by ID: ${id}` })
+        
     }
 
     async update(req, res) {
