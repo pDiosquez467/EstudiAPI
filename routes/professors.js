@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const controller = require('../controllers/students')
+const controller = require('../controllers/professors')
 
 router.get('/', controller.getAll)
 
