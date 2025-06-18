@@ -9,7 +9,8 @@ class StudentController {
         try {
             res.send("GET All students :)")
         } catch (error) {
-            res.status(400).json({ error: error });
+            if (error instanceof Error) 
+                res.send({ error: error.message });
         }
     }
 
@@ -19,7 +20,8 @@ class StudentController {
         try {
             res.send({ msg: 'Create a student :)' })
         } catch (error) {
-            res.status(400).json({ error: error });
+            if (error instanceof Error) 
+                res.send({ error: error.message });
         }
     }
 
@@ -28,7 +30,8 @@ class StudentController {
         try {
             res.send({ msg: 'GET student by ID' })
         } catch (error) {
-            res.status(400).json({ error: error });
+            if (error instanceof Error) 
+                res.send({ error: error.message });
         }
     }
 
@@ -37,7 +40,8 @@ class StudentController {
         try {
             res.send({ msg: 'UPDATE a student by ID' });
         } catch (error) {
-            res.status(400).json({ error: error });
+            if (error instanceof Error) 
+                res.send({ error: error.message });
         }
     }
 
@@ -47,7 +51,8 @@ class StudentController {
         try {
             res.send({ msg: 'DELETE a student by ID' })
         } catch (error) {
-            res.status(400).json({ error: error });
+            if (error instanceof Error) 
+                res.send({ error: error.message });
         }
     }
 
