@@ -13,11 +13,11 @@ const app = express()
 app.use(morgan('dev'))
 app.use(cors())
 
-app.use('/students', studentRoutes)
-app.use('/professors', professorRoutes)
-app.use('/courses', coursesRoutes)
+app.use("/students", studentRoutes)
+app.use("/professors", professorRoutes)
+app.use("/courses", coursesRoutes)
 
-app.get('/', ({req, res}: {req: Request, res: Response; }) => {
+app.get('/', (req: Request, res: Response) => {
     res.send('Hello, World!')
 })
 

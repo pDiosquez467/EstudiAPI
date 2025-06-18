@@ -1,14 +1,16 @@
 import express from 'express'
 const router = express.Router()
-const controller = require('../controllers/professors')
+import controller from '../controllers/professors'
 
-router.get('/', controller.getAll)
+const professorController = new controller()
 
-router.post('/', controller.create)
+router.get('/', professorController.getAll)
+
+router.post('/', professorController.create)
 
 router.route('/:id')
-    .get(controller.get)
-    .put(controller.update)
-    .delete(controller.delete)
+    .get(professorController.get)
+    .put(professorController.update)
+    .delete(professorController.delete)
 
 export default router

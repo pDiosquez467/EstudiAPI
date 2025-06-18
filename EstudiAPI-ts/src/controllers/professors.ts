@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-class ProfessorController {
+export default class ProfessorController {
     constructor() {
 
     }
@@ -57,5 +57,3 @@ class ProfessorController {
     }
 
 }
-
-export default new ProfessorController()
