@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Request, Response } from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 
@@ -9,7 +9,7 @@ const app = express()
 app.use(morgan('dev'))
 app.use(cors())
 
-app.get('/', (req, res) => {
+app.get('/', ({req, res}: {req: Request, res: Response; }) => {
     res.send('Hello, World!')
 })
 
