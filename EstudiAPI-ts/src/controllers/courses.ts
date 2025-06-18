@@ -56,6 +56,17 @@ class CourseController {
         }
     }
 
+    async addStudent({req, res}: {req: Request, res: Response}) {
+        
+        try {
+            res.send({ msg: 'ADD student INTO a course' })
+
+        } catch (error) {
+            if (error instanceof Error)
+                res.send({ error: error.message })
+        }
+    }
+
 }
 
 export default new CourseController()
