@@ -26,7 +26,6 @@ export default class ProfessorController {
     }
 
     async get({req, res}: {req: Request, res: Response; }) {
-        const { id } = req.params;
         try {
             res.send({ msg: 'GET Professor by ID' })
         } catch (error) {
